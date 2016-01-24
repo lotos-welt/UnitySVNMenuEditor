@@ -21,25 +21,25 @@ public class SvnMenu : EditorWindow {
 	/// 固定テキスト名.
 	/// </summary>
     
-    // コマンド名.
+        // コマンド名.
 	private static readonly string SVN_COMMAND = "/opt/local/bin/svn";
 	private static readonly string LOG_COMMAND = "log";
 	private static readonly string STATUS_COMMAND = "status";
 	private static readonly string UPDATE_COMMAND = "update";
 	private static readonly string REVERT_COMMAND = "revert";
-    private static readonly string ADD_COMMAND = "add";
+        private static readonly string ADD_COMMAND = "add";
 	private static readonly string COMMIT_COMMAND = "commit";
 	private static readonly string COMMIT_MESSAGE_COMMAND = "-m";
 
-    // ウインドウタイトル名.
+        // ウインドウタイトル名.
 	private static readonly string COMMIT_WINDOW_TITLE = "Commit";
 	private static readonly string COMMIT_LABEL_TITLE = "Commit Message";
 
-    // ボタン名.
+        // ボタン名.
 	private static readonly string OK_BTN_NAME = "OK";
 	private static readonly string CLOSE_BTN_NAME = "Close";
 
-    // エラーメッセージ.
+        // エラーメッセージ.
 	private static readonly string COMMIT_EMPTY_MESSAGCE = "Please enter the message!";
 
 
@@ -52,7 +52,7 @@ public class SvnMenu : EditorWindow {
 		Status,
 		Update,
 		Revert,
-        Add,
+                Add,
 		Commit
 	}
 
@@ -86,21 +86,21 @@ public class SvnMenu : EditorWindow {
 	/// </summary>
 	private static string m_commitMessage = string.Empty;
 
-    /// <summary>
-    /// 初期化.
-    /// </summary>
+        /// <summary>
+        /// 初期化.
+        /// </summary>
 	void OnEnable() {
         m_parentPath = string.Empty;
 		m_commandJoin = string.Empty;
 		m_Log = string.Empty;
-        m_commitMessage = string.Empty;
+                m_commitMessage = string.Empty;
 	}
 
 	// ログ情報.
 	[MenuItem("Assets/SVNMenu/Log")]
 	private static void SVNLog() {
 		m_State = State.Log;
-        GetSelectFile();
+                GetSelectFile();
 	}
 	
 	// 状態表示.
@@ -114,7 +114,7 @@ public class SvnMenu : EditorWindow {
 	[MenuItem("Assets/SVNMenu/Update")]
 	private static void SVNUpdate() {
 		m_State = State.Update;
-        GetSelectFile();
+                GetSelectFile();
 	}
 
 	// 前回のコミット時点に戻す.
@@ -124,12 +124,12 @@ public class SvnMenu : EditorWindow {
 		GetSelectFile();
 	}
 
-    // 追加する.
-    [MenuItem("Assets/SVNMenu/Add")]
-    private static void SVNAdd() {
-        m_State = State.Add;
-        GetSelectFile();
-    }
+        // 追加する.
+        [MenuItem("Assets/SVNMenu/Add")]
+        private static void SVNAdd() {
+                m_State = State.Add;
+        	GetSelectFile();
+        }
 
 	// コミットする.
 	[MenuItem("Assets/SVNMenu/Commit")]
@@ -142,14 +142,14 @@ public class SvnMenu : EditorWindow {
 	private static void Window_Create(string title) {
 		GetWindow<SvnMenu>().Close();
 
-        if (svnMenuInstance != null) {
-            svnMenuInstance.Close();
-        }
+	        if (svnMenuInstance != null) {
+	            svnMenuInstance.Close();
+	        }
 
 		svnMenuInstance = CreateInstance<SvnMenu>();
 
-        GUIContent titleContent = new GUIContent(title);
-        svnMenuInstance.titleContent = titleContent;
+	        GUIContent titleContent = new GUIContent(title);
+	        svnMenuInstance.titleContent = titleContent;
 
 		svnMenuInstance.minSize = new Vector2(500,100);
 		svnMenuInstance.maxSize = new Vector2(500,100);
@@ -159,8 +159,8 @@ public class SvnMenu : EditorWindow {
 
 	void OnGUI() {
 
-        EditorGUILayout.Space();
-        EditorGUILayout.Space();
+	        EditorGUILayout.Space();
+	        EditorGUILayout.Space();
 
 		// スタイルの作成.
 		GUIStyle guiStyle = new GUIStyle();
@@ -178,7 +178,7 @@ public class SvnMenu : EditorWindow {
 		EditorGUILayout.Space();
 
 		/******************************
-		/			  ボタン
+		/             ボタン
 		******************************/
 
 		EditorGUILayout.BeginHorizontal();
@@ -316,9 +316,9 @@ public class SvnMenu : EditorWindow {
 				command = REVERT_COMMAND + " " + m_commandJoin;
 				break;
 
-            case State.Add:
-                command = ADD_COMMAND + " " + m_commandJoin;
-                break;
+		        case State.Add:
+		                command = ADD_COMMAND + " " + m_commandJoin;
+		                break;
 
 			case State.Commit:
 				if(!string.IsNullOrEmpty(m_commitMessage)) {
